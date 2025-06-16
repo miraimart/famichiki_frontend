@@ -3,11 +3,31 @@ import logo from './imgaes/mart_green.png';
 import React, { useEffect, useState } from 'react';
 import { CurrentTime, GetCurrentHour } from './time';
 import { useNavigate } from 'react-router-dom'; 
+import { GetCurrentTime } from './time';
+
+import Snackbar from '@mui/material/Snackbar';
+import ClearIcon from "@mui/icons-material/Clear";
 
 
 function App() {
   const [predictedSales, setPredictedSales] = useState([]);
+  const [open, setOpen] = useState(false);
+  const {hour, minute} = GetCurrentTime();
+  const  alarm = (hour === 11 && minute >= 30) || hour > 11;
+
+
   const navigate = useNavigate(); 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+    useEffect(() => {
+    if (alarm) {
+      setOpen(true);
+    } else {
+      setOpen(false);
+    }
+  }, [hour, minute]);
 
   useEffect(() => {
   fetch('https://famichiki-backend.onrender.com/predict') 
@@ -61,6 +81,15 @@ function App() {
         >
           ボタン
         </button>
+        {hour === 11 && (
+          <Snackbar
+            open={open}
+            message="complete!!"
+            onClose={handleClose}
+            action={<ClearIcon onClick={handleClose} />}
+          />
+        )}
+
       </div>
     </div>
   );

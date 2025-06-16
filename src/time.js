@@ -35,9 +35,17 @@ export const CurrentTime = () => {
     );
 };
 
-// 時間（hour）だけ返すヘルパー関数
+
 export const GetCurrentHour = () => {
   const date = new Date();
   return date.getHours(); // 0〜23の数値
+};
+
+export const GetCurrentTime = () => {
+  const date = new Date();
+  return {
+    hour: date.getHours(),
+    minute: date.getMinutes(),
+  };
 };
 
