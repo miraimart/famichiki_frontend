@@ -3,36 +3,93 @@
 }
 
 .App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  width: 100px;
+  height: 100px;
+  object-fit: contain; /* 画像の比率を保ったまま収める */
+  margin-left: 24px; /* 左に余白をつける */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.App-body {
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(0, 0, 0);
+  /* appbar: 100px, bottom-bar: 100px を引く */
+  height: calc(100vh - 200px);
+  min-height: unset; /* min-heightを無効化 */
 }
 
 .App-link {
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+.appbar {
+  width: 100vw;           /* ビューポート幅いっぱいに広げる */
+  min-width: 100%;        /* 親要素の幅にも対応 */
+  height: 100px;
+  background-color: #0F987C;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.appbar-title {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.bottom-bar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100vw;
+  background: #0F987C;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  z-index: 100;
+}
+
+.bottom-button {
+  width: 100vw;
+  max-width: 100vw;
+  height: 100px;           /* 追加：高さを50pxに固定 */
+  border: none;
+  border-radius: 0;
+  background: #0B4CC4;
+  color: #F2F2F2;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 0;             /* 追加：余計な余白をなくす */
+  cursor: pointer;
+}
+
+.BarGraph {
+  width: 400px;   /* ← ここを変更 */
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.centerText {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 0;
+  font-size: 1.2rem;
+  color: #333;
 }
