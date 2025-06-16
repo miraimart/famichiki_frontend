@@ -12,25 +12,29 @@ import ClearIcon from "@mui/icons-material/Clear";
 function App() {
   const [predictedSales, setPredictedSales] = useState([]);
   const [open, setOpen] = useState(false);
-  const {hour, minute} = GetCurrentTime();
-  const  alarm = (hour === 11 && minute >= 30) || hour > 11;
-
+  const [currentTime, setCurrentTime] = useState(GetCurrentTime());
 
   const navigate = useNavigate(); 
   const handleClose = () => {
     setOpen(false);
   };
 
+  useEffect(() => {
+  if (currentTime.hour === 11 && currentTime.minute === 30 && currentTime.second === 0) {
+    setOpen(true);
+  } 
+}, [currentTime]);
+
     useEffect(() => {
-    if (alarm) {
-      setOpen(true);
-    } else {
-      setOpen(false);
-    }
-  }, [hour, minute]);
+      const timer = setInterval(() => {
+        setCurrentTime(GetCurrentTime());
+      }, 1000); // 1分ごとに更新
+
+      return () => clearInterval(timer);
+    }, []);
 
   useEffect(() => {
-  fetch('https://famichiki-backend.onrender.com/predict') 
+  fetch('https://') 
     .then(res => res.json())
     .then(data => {
       const now = GetCurrentHour();
@@ -65,6 +69,7 @@ function App() {
       </div>
       <div className="App-body">
         <div className = "centerText">
+          <h3>
           {predictedSales.length > 0
             ? predictedSales.map((item, i) => (
                 <div key={i}>
@@ -72,6 +77,7 @@ function App() {
                 </div>
               ))
             : "データ取得中..."}
+            </h3>
         </div>
       </div>
       <div className="bottom-bar">
@@ -81,7 +87,7 @@ function App() {
         >
           ボタン
         </button>
-        {hour === 11 && (
+        {open && (
           <Snackbar
             open={open}
             message="complete!!"

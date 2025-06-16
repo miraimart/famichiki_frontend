@@ -46,6 +46,7 @@ export const GetCurrentTime = () => {
   return {
     hour: date.getHours(),
     minute: date.getMinutes(),
+    second: date.getSeconds(),
   };
 };
 

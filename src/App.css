@@ -28,8 +28,8 @@
 
 
 .appbar {
-  width: 100vw;           /* ビューポート幅いっぱいに広げる */
-  min-width: 100%;        /* 親要素の幅にも対応 */
+  width: 100vw;          
+  min-width: 100%;   
   height: 100px;
   background-color: #0F987C;
   display: flex;
@@ -87,9 +87,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: 200%;
   width: 100%;
   margin-top: 0;
-  font-size: 1.2rem;
+  font-size: 24px;
   color: #333;
 }
