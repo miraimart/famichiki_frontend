@@ -11,11 +11,11 @@ function GraphPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch('https://famichiki-backend.onrender.com/predict') // ← 実際のAPI URL
+    fetch('https://famichiki-backend.onrender.com/predict')
       .then(res => res.json())
       .then(data => {
         const now = GetCurrentHour();
-        // 0〜8時間後までの時間を配列で作成
+        
         const targetHours = Array.from({ length: 9 }, (_, i) => (now + i) % 24);
 
         const filtered = data.predictions.filter(item => {
@@ -40,9 +40,14 @@ function GraphPage() {
       </div>
       <div className="App-body">
         <hr />
-        <h2>ファミチキの揚げ予測個数</h2>
+        <h3>ファミチキの揚げ予測個数</h3>
+        <div class = "graphContainer">
+        <div class = "label">個数</div>
         <BarGraph data={predictedSales} />
-         <div className="bottom-bar">
+        </div>
+        </div>
+        <h>時間</h>
+        <div className="bottom-bar">
         <button
           className="bottom-button"
            onClick={() => navigate(-1)}
@@ -51,7 +56,6 @@ function GraphPage() {
         </button>
       </div>
       </div>
-    </div>
   );
 }
 

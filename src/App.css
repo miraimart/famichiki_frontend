@@ -93,3 +93,24 @@
   font-size: 24px;
   color: #333;
 }
+
+.custom-snackbar {
+  background-color: #0F987C;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 8px;
+  height: 200px;
+  width: 100px;
+}
+
+.graphContainer{
+  display: flex;
+  align-items: center;
+}
+
+.label{
+  writing-mode: horizontal-tb; 
+  margin-right: 8px;            
+  font-size: 16px;
+  line-height: 1;
+}

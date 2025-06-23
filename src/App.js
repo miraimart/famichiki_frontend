@@ -37,8 +37,7 @@ function App() {
   fetch('https://') 
     .then(res => res.json())
     .then(data => {
-      const now = GetCurrentHour();
-      // 6時間分の時間配列を作成
+      const now = GetCurrentHour()
       const targetHours = Array.from({ length: 6 }, (_, i) => (now + i) % 24);
 
       const filtered = data.predictions
@@ -47,8 +46,6 @@ function App() {
             return targetHours.includes(hourNum);
           })
         : [];
-
-      // 予測個数の合計を計算
       const total = filtered.reduce(
         (sum, item) => sum + Number(item.predicted_sales), 0
       );
@@ -88,13 +85,16 @@ function App() {
           ボタン
         </button>
         {open && (
-          <Snackbar
+           <Snackbar
             open={open}
-            message="complete!!"
+            message={
+              <span className="custom-snackbar-message">ピークが予測されます</span>
+            }
             onClose={handleClose}
             action={<ClearIcon onClick={handleClose} />}
+            anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
           />
-        )}
+                )}
 
       </div>
     </div>
