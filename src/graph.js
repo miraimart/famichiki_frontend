@@ -14,29 +14,27 @@ const BarGraph = ({ data }) => {
       {/* x軸の線 */}
       <line x1="40" y1={height - paddingBottom} x2={width - 20} y2={height - paddingBottom} stroke="#ccc" />
 
-      {data.map((d, i) => { // 各時間帯（データポイント）ごとの処理
-        const x = i * (barWidth + barGap) + 40; // 各棒グラフのX座標
+      {data.map((d, i) => {
+        const x = i * (barWidth + barGap) + 40;
 
         return (
           <g key={i}>
-            {/* d.predicted_sales の数だけ rect を生成する部分を map で記述 */}
-            {Array.from({ length: d.predicted_sales }).map((_, j) => { // ★この Array.from と map がスマートな点★
-              const rectY = height - paddingBottom - (j + 1) * unitHeight; // 下から積み重ねていく
+            {Array.from({ length: d.predicted_sales }).map((_, j) => {
+              const rectY = height - paddingBottom - (j + 1) * unitHeight; 
 
               return (
                 <rect
-                  key={`${i}-${j}`} // ユニークなキー
+                  key={`${i}-${j}`} 
                   x={x}
                   y={rectY}
                   width={barWidth}
-                  height={unitHeight - 2} // 少し隙間を開けて積み重なっているように見せる
-                  fill="#FF6347" // りんごの色
-                  stroke="#fff" // 枠線で区切りを明確に
+                  height={unitHeight - 2} 
+                  fill="#FF6347" 
+                  stroke="#fff" 
                   strokeWidth="1"
                 />
               );
             })}
-            {/* 時間表示 */}
             <text
               x={x + barWidth / 2}
               y={height - paddingBottom / 2}
@@ -46,7 +44,6 @@ const BarGraph = ({ data }) => {
             >
               {d.hour}時
             </text>
-            {/* 販売数表示 (積み重ねた棒グラフの最上部に) */}
             <text
               x={x + barWidth / 2}
               y={height - paddingBottom - d.predicted_sales * unitHeight - 5}
