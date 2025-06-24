@@ -28,13 +28,13 @@ function App() {
     useEffect(() => {
       const timer = setInterval(() => {
         setCurrentTime(GetCurrentTime());
-      }, 1000); // 1分ごとに更新
+      }, 1000);
 
       return () => clearInterval(timer);
     }, []);
 
   useEffect(() => {
-  fetch('https://') 
+  fetch('https://famichiki-backend.onrender.com/predict')
     .then(res => res.json())
     .then(data => {
       const now = GetCurrentHour()
@@ -70,7 +70,7 @@ function App() {
           {predictedSales.length > 0
             ? predictedSales.map((item, i) => (
                 <div key={i}>
-                  {item.hour}時の予測: {item.predicted_sales} 個
+                  {item.hour}の予測: {item.predicted_sales} 個
                 </div>
               ))
             : "データ取得中..."}

@@ -1,0 +1,9 @@
+src/
+├──App.js#何個作るかの画面
+├──App.test.js
+├──graph.js#グラフの見た目
+├──GraphPage.js#グラフの表示ページ
+├──index.css
+├──reportWebVitals.js
+├──setupTests.js
+├──time.js #時間の取得
