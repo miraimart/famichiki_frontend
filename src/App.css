@@ -19,7 +19,18 @@
   color: rgb(0, 0, 0);
   /* appbar: 100px, bottom-bar: 100px を引く */
   height: calc(100vh - 200px);
-  min-height: unset; /* min-heightを無効化 */
+  min-height: unset; 
+   margin: 0px 0;
+}
+
+h4 {
+    display: block;
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    unicode-bidi: isolate;
 }
 
 .App-link {
@@ -74,13 +85,6 @@
   cursor: pointer;
 }
 
-.BarGraph {
-  width: 400px;   /* ← ここを変更 */
-  height: 400px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
 
 .centerText {
   display: flex;
@@ -106,6 +110,7 @@
 .graphContainer{
   display: flex;
   align-items: center;
+  color: #000000;
 }
 
 .label{

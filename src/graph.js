@@ -1,17 +1,16 @@
 import React from 'react';
 const BarGraph = ({ data }) => {
-  const width = 600;
-  const height = 450;
-  const barWidth = 40;
+  const width = 800;
+  const height = 520;
+  const barWidth = 50;
   const barGap = 40;
-  const maxPossibleValue = 10;
+  const maxPossibleValue = 4;
 
   const paddingBottom = 40;
   const paddingTop = 20;  
   const unitHeight = (height - paddingBottom - paddingTop) / maxPossibleValue;
   return (
-    <svg width={width} height={height} style={{ border: '1px solid #ccc' }}>
-      {/* x軸の線 */}
+    <svg width={width} height={height}>
       <line x1="40" y1={height - paddingBottom} x2={width - 20} y2={height - paddingBottom} stroke="#ccc" />
 
       {data.map((d, i) => {
@@ -29,16 +28,17 @@ const BarGraph = ({ data }) => {
                   y={rectY}
                   width={barWidth}
                   height={unitHeight - 2} 
-                  fill="#FF6347" 
+                  fill="#63BFAE" 
                   stroke="#fff" 
                   strokeWidth="1"
+                  rx="6"
                 />
               );
             })}
             <text
               x={x + barWidth / 2}
-              y={height - paddingBottom / 2}
-              fontSize="16"
+              y={height - paddingBottom /2 +5}
+              fontSize="25"
               textAnchor="middle"
               fill="#333"
             >
@@ -47,11 +47,12 @@ const BarGraph = ({ data }) => {
             <text
               x={x + barWidth / 2}
               y={height - paddingBottom - d.predicted_sales * unitHeight - 5}
-              fontSize="17"
+              fontSize="40"
               textAnchor="middle"
-              fill="#333"
+              fill="#63BFAE"
+              fontWeight="bold"
             >
-              {d.predicted_sales}個
+              {d.predicted_sales}
             </text>
           </g>
         );

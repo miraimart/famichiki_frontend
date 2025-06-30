@@ -39,8 +39,7 @@ function GraphPage() {
         </div>
       </div>
       <div className="App-body">
-        <hr />
-        <h3>ファミチキの揚げ予測個数</h3>
+         <h4>ファミチキの揚げ予測個数</h4>
         <div class = "graphContainer">
         <div class = "label">個数</div>
         <BarGraph data={predictedSales} />

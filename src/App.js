@@ -66,15 +66,15 @@ function App() {
       </div>
       <div className="App-body">
         <div className = "centerText">
-          <h3>
+          <h2>
           {predictedSales.length > 0
             ? predictedSales.map((item, i) => (
                 <div key={i}>
-                  {item.hour}の予測: {item.predicted_sales} 個
+                  {item.hour}の予測: <span style={{ fontSize: '1.5em', fontWeight: 'bold' }}>{item.predicted_sales}個</span>
                 </div>
               ))
             : "データ取得中..."}
-            </h3>
+            </h2>
         </div>
       </div>
       <div className="bottom-bar">
