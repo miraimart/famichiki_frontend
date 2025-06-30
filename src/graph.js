@@ -4,7 +4,7 @@ const BarGraph = ({ data }) => {
   const height = 520;
   const barWidth = 50;
   const barGap = 40;
-  const maxPossibleValue = 4;
+  const maxPossibleValue = Math.max(...data.map(item => item.predicted_sales))+1;
 
   const paddingBottom = 40;
   const paddingTop = 20;  
@@ -53,6 +53,17 @@ const BarGraph = ({ data }) => {
               fontWeight="bold"
             >
               {d.predicted_sales}
+            </text>
+
+            <text
+              x={width / 2}
+              y={paddingTop+10}
+              fontSize="30"
+              textAnchor="middle"
+              fill="#63BFAE"
+              fontWeight="bold"
+            >
+            ファミチキ予想売り上げ個数
             </text>
           </g>
         );

@@ -82,7 +82,7 @@ function App() {
           className="bottom-button"
           onClick={() => navigate('/next')}
         >
-          ボタン
+          グラフを見る
         </button>
         {open && (
            <Snackbar
