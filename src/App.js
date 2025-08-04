@@ -34,25 +34,33 @@ function App() {
     }, []);
 
   useEffect(() => {
-  fetch('https://famichiki-backend.onrender.com/predict')
-    .then(res => res.json())
-    .then(data => {
-      const now = GetCurrentHour()
-      const targetHours = Array.from({ length: 6 }, (_, i) => (now + i) % 24);
+  // データ取得関数
+  const fetchData = () => {
+    fetch('https://famichiki-backend.onrender.com/predict')
+      .then(res => res.json())
+      .then(data => {
+        const now = GetCurrentHour();
+        const targetHours = Array.from({ length: 6 }, (_, i) => (now + i) % 24);
 
-      const filtered = data.predictions
-        ? data.predictions.filter(item => {
-            const hourNum = parseInt(item.hour, 10);
-            return targetHours.includes(hourNum);
-          })
-        : [];
-      const total = filtered.reduce(
-        (sum, item) => sum + Number(item.predicted_sales), 0
-      );
+        const filtered = data.predictions
+          ? data.predictions.filter(item => {
+              const hourNum = parseInt(item.hour, 10);
+              return targetHours.includes(hourNum);
+            })
+          : [];
+        const total = filtered.reduce(
+          (sum, item) => sum + Number(item.predicted_sales), 0
+        );
 
-      setPredictedSales([{ hour: `${now}時〜${targetHours[5]}時`, predicted_sales: total }]);
-    })
-    .catch(err => console.error(err));
+        setPredictedSales([{ hour: `${now}時〜${targetHours[5]}時`, predicted_sales: total }]);
+      })
+      .catch(err => console.error(err));
+  };
+
+  fetchData(); 
+  const interval = setInterval(fetchData, 60 * 60 * 1000);
+
+  return () => clearInterval(interval);
 }, []);
 
 
